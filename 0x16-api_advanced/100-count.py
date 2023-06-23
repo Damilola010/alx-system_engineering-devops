@@ -29,12 +29,10 @@ def count_words(subreddit, word_list, after="", word_dic={}):
 
     try:
         js = r.json()
-
     except ValueError:
         return None
 
     try:
-
         data = js.get("data")
         after = data.get("after")
         children = data.get("children")
@@ -49,4 +47,9 @@ def count_words(subreddit, word_list, after="", word_dic={}):
     except Exception as e:
         return None
 
-    count_words(subreddit, word_list, after, word_dic)
+    return count_words(subreddit, word_list, after, word_dic)  # Return the result of the recursive call
+
+
+# Example usage:
+result = count_words("python", ["programming", "language", "code"])
+print(result)
